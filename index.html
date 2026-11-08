@@ -1,0 +1,355 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Мій теплий перехід</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: phone-first workbook — sticky page tabs, one workbook page (Г1–Г5) at a time, brand band on top, prev/next at the bottom. Single light theme, matching the printed manual. */
+:root{
+  --ink:#1B1B1B; --muted:#646464; --paper:#FFFFFF; --wash:#FAF8E4;
+  --yellow:#DCD643; --yellow-soft:#F5F2C4; --line:#D8D36A; --rule:#DADADA;
+  --blue:#2E8BC9; --blue-ink:#1F6FA5; --blue-soft:#E3F0F9; --grey-soft:#F1F1EE;
+  --ok:#2F7A4B;
+  --font:"Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.5 var(--font);-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:640px;margin:0 auto}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+h1,h2,h3{margin:0;text-wrap:balance}
+
+/* sticky tabs */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabrow{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+.tabrow::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;border:1.5px solid var(--yellow);background:var(--paper);border-radius:999px;padding:5px 12px;font-weight:700;font-size:13px;color:var(--blue-ink);display:flex;align-items:center;gap:6px}
+.tab[aria-current="page"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.tab .dot{width:7px;height:7px;border-radius:50%;background:var(--rule)}
+.tab .dot.part{background:var(--yellow)}
+.tab .dot.full{background:var(--ok)}
+.tab[aria-current="page"] .dot{box-shadow:0 0 0 1.5px #fff}
+
+/* band */
+.band{background:linear-gradient(180deg,#F4F1BC 0%,var(--wash) 60%,var(--paper) 100%)}
+.band .wrap{padding-block:18px 14px}
+.run{display:flex;align-items:center;gap:6px;font-weight:700;font-size:10px;letter-spacing:.05em;text-transform:uppercase}
+.run i{width:5px;height:5px;border-radius:50%;background:var(--blue)}
+.run b{width:36px;height:7px;border-radius:4px;background:var(--yellow)}
+.heads{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:22px;flex-wrap:wrap}
+.code{border:1.6px solid var(--yellow);border-radius:999px;padding:3px 18px;color:var(--blue);font-weight:800;font-size:15px;background:var(--paper)}
+.pills{display:flex}
+.pill{font-weight:800;font-size:10px;text-transform:uppercase;padding:4px 10px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
+.pill.b{background:var(--blue);color:#fff;position:relative;z-index:1}
+.pill.y{background:var(--yellow);margin-left:-9px;padding-left:16px}
+.band h1{font-weight:800;font-size:23px;line-height:1.2;margin-top:12px}
+.band .sub{color:var(--muted);font-weight:500;font-size:14px;margin-top:6px}
+.meta{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;font-weight:600}
+.meta svg{width:22px;height:22px;flex:0 0 auto}
+
+/* content */
+main .wrap{padding-block:6px 28px;display:flex;flex-direction:column}
+.block{padding-block:16px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.block:last-of-type{border-bottom:0}
+label.q,.q{font-weight:700;font-size:15px;line-height:1.35}
+textarea{width:100%;min-height:76px;resize:none;border:1.5px solid var(--rule);border-radius:12px;padding:10px 12px;background:var(--paper);line-height:1.45;overflow:hidden}
+textarea:focus{border-color:var(--blue);outline:none;box-shadow:0 0 0 3px var(--blue-soft)}
+textarea::placeholder,input::placeholder{color:#9A9A9A}
+input[type=text]{width:100%;border:1.5px solid var(--rule);border-radius:10px;padding:9px 11px;background:var(--paper)}
+input[type=text]:focus{border-color:var(--blue);outline:none;box-shadow:0 0 0 3px var(--blue-soft)}
+
+.step{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding-block:16px;border-bottom:1px solid var(--line)}
+.num{width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:16px;font-weight:800}
+.why{font-size:13px;color:var(--muted);margin-top:2px}
+.tip{font-size:13px;background:var(--blue-soft);border-radius:8px;padding:6px 10px;margin:8px 0 8px;align-self:flex-start}
+.tip b{color:var(--blue-ink)}
+.step .body{display:flex;flex-direction:column;min-width:0}
+
+.sechead{display:flex;align-items:center;gap:8px}
+.tag{background:var(--yellow);border-radius:999px;font-weight:800;font-size:11px;padding:2px 9px;text-transform:uppercase}
+.tag.b{background:var(--blue);color:#fff}
+.sechead h2{font-size:17px;font-weight:800}
+
+.planb{border:1.5px solid var(--yellow);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.planb .q{font-size:14px}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--blue);background:var(--paper);color:var(--blue-ink);border-radius:999px;padding:7px 14px;font-weight:700;font-size:13px}
+.chip[aria-pressed="true"]{background:var(--blue);color:#fff}
+
+.day{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding-block:16px;border-bottom:1px solid var(--line)}
+@media (max-width:420px){.day{grid-template-columns:minmax(0,1fr);gap:6px}}
+.dayp{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.dayp .d{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.dayp .w{background:var(--yellow);border-radius:999px;font-weight:800;font-size:12px;padding:2px 10px}
+.day .stem{font-weight:700;font-size:15px;margin-bottom:6px}
+
+.frame{display:grid;gap:10px}
+.col{border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.col h4{margin:0;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+.col .hint{font-size:12.5px;color:var(--muted)}
+.col textarea{background:rgba(255,255,255,.85);border-color:transparent}
+.c1{background:var(--yellow-soft)} .c2{background:var(--grey-soft)} .c3{background:var(--blue-soft)}
+
+.contact{padding-block:14px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.contact .t{font-weight:700;font-size:15px}
+.seg{display:inline-flex;border:1.5px solid var(--blue);border-radius:999px;overflow:hidden;align-self:flex-start}
+.seg button{border:0;background:var(--paper);color:var(--blue-ink);font-weight:700;font-size:12.5px;padding:6px 12px}
+.seg button+button{border-left:1.5px solid var(--blue)}
+.seg button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.first{background:var(--yellow-soft);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.first .bt{font-weight:800;font-size:16px}
+.first .ln{display:grid;grid-template-columns:72px minmax(0,1fr);gap:8px;align-items:center;font-weight:600;font-size:14px}
+
+/* intro */
+.irow{display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;padding-block:14px;border-bottom:1px solid var(--line)}
+.irow svg{width:26px;height:26px}
+.irow .lbl{font-weight:800;font-size:15px;margin-bottom:4px}
+.irow p{margin:0 0 6px}
+.toc{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.toc button{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;border:1.5px solid var(--rule);background:var(--paper);border-radius:14px;padding:10px 12px}
+.toc button:hover{border-color:var(--yellow)}
+.toc .k{font-weight:800;color:var(--blue)}
+.toc .n{font-weight:700;font-size:14px;line-height:1.3}
+.toc .w{display:block;font-weight:500;font-size:12px;color:var(--muted)}
+.toc .s{font-size:12px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--muted)}
+
+/* export + nav */
+.export{background:var(--grey-soft);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.export .bt{font-weight:800}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1.5px solid var(--blue);background:var(--paper);color:var(--blue-ink);border-radius:999px;padding:9px 16px;font-weight:700;font-size:14px}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.ghost{border-color:var(--rule);color:var(--muted)}
+.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;font-weight:600}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.pager .btn{min-width:0}
+.status{font-size:12px;color:var(--muted);text-align:center;padding-block:12px 4px}
+.status.warn{color:#9A4A12;font-weight:600}
+textarea.copyall{min-height:160px;font-size:13px}
+@media (prefers-reduced-motion:no-preference){.view{animation:fade .18s ease-out}@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}}
+</style>
+
+<nav class="tabs gut" aria-label="Сторінки зошита"><div class="wrap"><div class="tabrow" id="tabs"></div></div></nav>
+<header class="band gut"><div class="wrap" id="band"></div></header>
+<main class="gut"><div class="wrap" id="view"></div></main>
+
+<script>
+const PAGES = [
+  {id:"intro", code:"Зошит", tabLabel:"Як працювати", pill:"Теплий перехід",
+   title:"Мій теплий перехід", sub:"Нотатки до симуляції і мій маршрут. Заповнюйте сторінки Г1–Г5 впродовж обох частин сесії."},
+  {id:"g1", code:"Г1", tabLabel:"Г1", pill:"Крок 2 · 8 хв", title:"Мої фрази теплого переходу", sub:"Запишіть до кожного кроку власну фразу — так, як сказали б її у своєму центрі.", when:"Після вступу про алгоритм, індивідуально або в парах"},
+  {id:"g2", code:"Г2", tabLabel:"Г2", pill:"Крок 6 · 4 хв", title:"Після Раунду 1", sub:"Раунд «Проста ситуація»: що я помітив / помітила.", when:"Перед обідньою перервою"},
+  {id:"g3", code:"Г3", tabLabel:"Г3", pill:"Крок 10 · 4 хв", title:"Після Раундів 2–3", sub:"Що спрацювало, що легко пропустити і мій план Б.", when:"На дебрифінгу"},
+  {id:"g4", code:"Г4", tabLabel:"Г4", pill:"Крок 11 · 6 хв", title:"Мій маршрут: розумію — взаємодію — дію", sub:"Одне речення на кожен день курсу і моя рамка ролі.", when:"Завершення курсу"},
+  {id:"g5", code:"Г5", tabLabel:"Г5", pill:"Крок 11 · 4 хв", title:"Моя карта контактів", sub:"«Теплий перехід» працює там, де домовленості є до того, як прийде людина.", when:"Почати на сесії, завершити після тренінгу"},
+];
+const STEPS = [
+  ["Ідентифікація запиту","Почути потребу, не ставити діагноз","«Звучить так, що зараз сон і напруга сильно заважають»"],
+  ["Валідація досвіду","Почуте має значення, це не слабкість","«Те, що ти про це говориш, — уже важливий крок»"],
+  ["Конкретний ресурс","Хто саме і чому їм можна довіряти","«У громаді є фахівчиня, яка працює саме з такими ситуаціями»"],
+  ["Згода і вибір варіантів","Рішення і контроль — за людиною","«Хочеш, я передам їй твій контакт? Або наберемо разом»"],
+  ["Реальний контакт","Дзвінок разом або чіткий наступний крок","«Сьогодні до 17:00 я напишу їй і скину тобі відповідь»"],
+  ["Подальший супровід","Ненав'язливо повернутися до теми","«Як ти? Чи вдалося поговорити?»"],
+];
+const CONTACTS = [["psy","Психологічна підтримка"],["nav","Навігація: документи, статус, програми"],["job","Працевлаштування / навчання"],["law","Правова допомога"],["fam","Сімейне консультування"],["oth","Інше"]];
+const WHERE = [["need","ПОТРЕБА · розумію"],["comm","КОМУНІКАЦІЯ І МЕЖІ · взаємодію"],["move","ПЕРЕХІД · дію"]];
+
+// fields per page for progress
+const FIELDS = {
+  g1: STEPS.map((_,i)=>"g1_"+i),
+  g2: ["g2_need","g2_rescue"],
+  g3: ["g3_best","g3_step","g3_refuse","g3_partner","g3_where"],
+  g4: ["g4_d1","g4_d2","g4_d3","g4_can","g4_cannot","g4_involve"],
+  g5: [...CONTACTS.map(c=>"g5_"+c[0]),"g5_date","g5_who","g5_what"],
+};
+
+const KEY="tp-zoshyt-v1";
+let data={}, storageOk=true, saveTimer=null, downloads=null, confirmClear=false;
+try{ const raw=localStorage.getItem(KEY); if(raw) data=JSON.parse(raw)||{}; }catch(e){ storageOk=false }
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(()=>{
+    try{ localStorage.setItem(KEY,JSON.stringify(data)); storageOk=true }catch(e){ storageOk=false }
+    renderStatus(); renderTabs();
+  },300);
+}
+const filled=v=>typeof v==="string"?v.trim().length>0:!!v;
+function progress(id){const f=FIELDS[id]||[];return [f.filter(k=>filled(data[k])).length,f.length]}
+
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function current(){const h=(location.hash||"").slice(1);return PAGES.find(p=>p.id===h)?h:"intro"}
+function go(id){ if(id==="intro"){history.replaceState(null,"",location.pathname+location.search); render()} else location.hash=id; window.scrollTo({top:0}) }
+
+function renderTabs(){
+  const cur=current();
+  $("tabs").innerHTML=PAGES.map(p=>{
+    let dot="";
+    if(p.id!=="intro"){const [a,b]=progress(p.id);dot=`<span class="dot ${a===0?"":a===b?"full":"part"}"></span>`}
+    return `<button class="tab" data-go="${p.id}" ${p.id===cur?'aria-current="page"':""}>${dot}${esc(p.tabLabel)}</button>`;
+  }).join("");
+}
+const ICON={
+  clock:`<svg viewBox="0 0 28 28"><circle cx="14" cy="15" r="10" fill="none" stroke="#DCD643" stroke-width="2.4"/><path d="M14 9v6l4 2" stroke="#2E8BC9" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>`,
+  target:`<svg viewBox="0 0 28 28"><circle cx="14" cy="14" r="11" fill="none" stroke="#DCD643" stroke-width="2.4"/><circle cx="14" cy="14" r="4" fill="#2E8BC9"/></svg>`,
+  frame:`<svg viewBox="0 0 28 28"><rect x="5" y="5" width="13" height="13" rx="3" fill="none" stroke="#2E8BC9" stroke-width="2.4"/><rect x="10" y="10" width="13" height="13" rx="3" fill="none" stroke="#DCD643" stroke-width="2.4"/></svg>`,
+  shield:`<svg viewBox="0 0 28 28"><path d="M14 4l9 4v6c0 5-4 9-9 10-5-1-9-5-9-10V8z" fill="none" stroke="#DCD643" stroke-width="2.4" stroke-linejoin="round"/><path d="M10 14l3 3 5-6" stroke="#2E8BC9" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+};
+function renderBand(p){
+  $("band").innerHTML=`
+    <div class="run"><i></i><b></b><span>Молодіжна робота з ветеранами та ветеранками</span></div>
+    <div class="heads"><span class="code">${esc(p.code)}</span><span class="pills"><span class="pill b">Модуль 3.</span><span class="pill y">Сесія 2 · ${esc(p.pill)}</span></span></div>
+    <h1>${esc(p.title)}</h1>
+    <div class="sub">${esc(p.sub)}</div>
+    ${p.when?`<div class="meta">${ICON.clock}<span>${esc(p.when)}</span></div>`:""}`;
+}
+const ta=(k,ph,rows)=>`<textarea id="${k}" data-k="${k}" rows="${rows||3}" placeholder="${esc(ph||"")}">${esc(data[k]||"")}</textarea>`;
+const inp=(k,ph)=>`<input type="text" id="${k}" data-k="${k}" placeholder="${esc(ph||"")}" value="${esc(data[k]||"")}">`;
+
+function pager(id){
+  const i=PAGES.findIndex(p=>p.id===id);
+  const prev=PAGES[i-1], next=PAGES[i+1];
+  return `<div class="pager">${prev?`<button class="btn ghost" data-go="${prev.id}">← ${esc(prev.tabLabel)}</button>`:"<span></span>"}${next?`<button class="btn primary" data-go="${next.id}">${next.id==="g1"?"Почати":esc(next.tabLabel)} →</button>`:"<span></span>"}</div>`;
+}
+function exportBlock(){
+  return `<section class="export" aria-labelledby="exT">
+    <div class="bt" id="exT">Мої відповіді</div>
+    <div class="note">Відповіді зберігаються лише в цьому браузері на цьому телефоні. Щоб не втратити їх, скопіюйте собі в нотатки чи повідомлення${downloads?" або збережіть файлом":""}.</div>
+    <div class="btns">
+      <button class="btn primary" data-act="copy">Скопіювати всі відповіді</button>
+      ${downloads?`<button class="btn" data-act="file">Зберегти файл .txt</button>`:""}
+      <button class="btn ghost" data-act="clear">Очистити зошит</button>
+    </div>
+    <div id="exMsg" class="note" role="status"></div>
+    ${confirmClear?`<div class="confirm">Видалити всі відповіді з цього телефона? <button class="btn" data-act="clear-yes">Так, очистити</button><button class="btn ghost" data-act="clear-no">Скасувати</button></div>`:""}
+  </section>`;
+}
+
+function viewIntro(){
+  const toc=PAGES.filter(p=>p.id!=="intro").map(p=>{const [a,b]=progress(p.id);return `<button data-go="${p.id}"><span class="k">${p.code}</span><span class="n">${esc(p.title)}<span class="w">${esc(p.when)}</span></span><span class="s">${a}/${b}</span></button>`}).join("");
+  return `
+  <div class="irow">${ICON.target}<div><div class="lbl">Навіщо цей зошит</div><p>Зібрати власні робочі фрази для алгоритму перескерування, зафіксувати помилки, які легко повторити, підсумувати маршрут курсу і почати карту контактів своєї громади.</p><p class="note">Це не сценарій для зачитування: пишіть так, як говорите у своєму центрі.</p></div></div>
+  <div class="irow">${ICON.clock}<div><div class="lbl">Сторінки і коли їх заповнювати</div><div class="toc">${toc}</div></div></div>
+  <div class="irow">${ICON.frame}<div><div class="lbl">Опорна рамка курсу</div><p><b>МОЖУ</b> → <b>НЕ МОЖУ / НЕ МОЯ ФУНКЦІЯ</b> → <b>ПЕРЕСКЕРОВУЮ / ЗАЛУЧАЮ ПАРТНЕРА</b></p><p class="note">Кожен раунд гри відпрацьовує одну зону рамки. На сторінці Г4 ви сформулюєте власну рамку.</p></div></div>
+  <div class="irow" style="border-bottom:0">${ICON.shield}<div><div class="lbl">Важливо</div><p>Записи особисті. Не пишіть імен, історій чи контактів ветеранів і ветеранок, з якими працюєте. У карті контактів — лише служби та посади фахівців.</p></div></div>
+  ${exportBlock()}${pager("intro")}`;
+}
+function viewG1(){
+  return STEPS.map((s,i)=>`<div class="step"><div class="num">${i+1}</div><div class="body"><h3>${s[0]}</h3><div class="why">${s[1]}</div><div class="tip"><b>Так краще:</b> ${s[2]}</div><label class="q" for="g1_${i}" style="font-size:13px;color:var(--muted);font-weight:600">Моя фраза</label>${ta("g1_"+i,"Як я скажу це своїми словами…",2)}</div></div>`).join("")+pager("g1");
+}
+function viewG2(){
+  return `<div class="block"><label class="q" for="g2_need">Потреба, яку я не одразу побачив / побачила:</label>${ta("g2_need","Наприклад: людині потрібна була не порада, а…")}</div>
+  <div class="block"><label class="q" for="g2_rescue">Що мене спокушало «рятувати» або одразу перескеровувати:</label>${ta("g2_rescue","")}</div>${pager("g2")}`;
+}
+function viewG3(){
+  const sel=data.g3_where||"";
+  return `<div class="block"><label class="q" for="g3_best">Фраза, яка спрацювала найкраще (моя або іншої команди):</label>${ta("g3_best","")}</div>
+  <div class="block"><label class="q" for="g3_step">Крок алгоритму, який найлегше пропустити, — і як я його не пропущу:</label>${ta("g3_step","")}</div>
+  <div class="block"><div class="sechead"><span class="tag">План Б</span><h2>Якщо щось пішло не так</h2></div>
+    <div class="planb"><label class="q" for="g3_refuse">Якщо людина відмовляється — я…</label>${ta("g3_refuse","")}</div>
+    <div class="planb"><label class="q" for="g3_partner">Якщо партнер недоступний — я…</label>${ta("g3_partner","")}</div></div>
+  <div class="block"><div class="q" id="whereQ">Де наша команда помилялася найбільше?</div>
+    <div class="chips" role="group" aria-labelledby="whereQ">${WHERE.map(w=>`<button class="chip" data-where="${w[0]}" aria-pressed="${sel===w[0]}">${w[1]}</button>`).join("")}</div></div>${pager("g3")}`;
+}
+function viewG4(){
+  const day=(d,w,k,stem)=>`<div class="day"><div class="dayp"><span class="d">${d}</span><span class="w">${w}</span></div><div><label class="stem" for="${k}" style="display:block">${stem}</label>${ta(k,"",2)}</div></div>`;
+  return day("День 1","РОЗУМІЮ","g4_d1","Щоб побачити справжню потребу молодого ветерана / ветеранки, я звертаю увагу на…")
+   + day("День 2","ВЗАЄМОДІЮ","g4_d2","У розмові я обов'язково… і ніколи не…")
+   + day("День 3","ДІЮ","g4_d3","Коли запит виходить за межі моєї ролі, я…")
+   + `<div class="block" style="border-bottom:0"><div class="sechead"><span class="tag b">Рамка</span><h2>Моя рамка ролі у моїй громаді</h2></div>
+      <div class="frame">
+        <div class="col c1"><h4><label for="g4_can">Можу</label></h4><div class="hint">роблю сам / сама в молодіжному просторі</div>${ta("g4_can","Кожен пункт з нового рядка",4)}</div>
+        <div class="col c2"><h4><label for="g4_cannot">Не можу / не моя функція</label></h4><div class="hint">чесно зупиняюся</div>${ta("g4_cannot","Кожен пункт з нового рядка",4)}</div>
+        <div class="col c3"><h4><label for="g4_involve">Перескеровую / залучаю партнера</label></h4><div class="hint">кого і як залучаю</div>${ta("g4_involve","Кожен пункт з нового рядка",4)}</div>
+      </div></div>` + pager("g4");
+}
+function viewG5(){
+  const rows=CONTACTS.map(([k,t])=>{
+    const st=data["g5_"+k+"_st"]||"";
+    const label = k==="oth" ? inp("g5_oth_label","Інший тип запиту") : `<div class="t">${t}</div>`;
+    return `<div class="contact">${label}${inp("g5_"+k,"Служба або посада фахівця")}
+      <div class="seg" role="group" aria-label="Домовленість"><button data-st="${k}" data-v="yes" aria-pressed="${st==="yes"}">Домовленість є</button><button data-st="${k}" data-v="todo" aria-pressed="${st==="todo"}">Треба домовитися</button></div></div>`;
+  }).join("");
+  return `<p class="note" style="margin:14px 0 0">Запишіть службу або посаду фахівця у вашій громаді. Контакти швидко змінюються — перевіряйте їх щонайменше раз на кілька місяців.</p>${rows}
+  <div class="first"><div class="bt">Мій перший крок після тренінгу</div>
+    <div class="ln"><label for="g5_date">До</label>${inp("g5_date","дата")}</div>
+    <div class="ln"><label for="g5_who">я домовлюся з</label>${inp("g5_who","ким")}</div>
+    <div class="ln"><label for="g5_what">про</label>${inp("g5_what","що саме")}</div></div>
+  ${exportBlock()}${pager("g5")}`;
+}
+
+function renderStatus(){
+  const s=$("status"); if(!s) return;
+  if(storageOk){s.className="status";s.textContent="Відповіді зберігаються автоматично на цьому телефоні."}
+  else{s.className="status warn";s.textContent="Цей браузер не зберігає відповіді. Перед закриттям скопіюйте їх кнопкою «Скопіювати всі відповіді»."}
+}
+function render(){
+  const id=current(); const p=PAGES.find(x=>x.id===id);
+  renderTabs(); renderBand(p);
+  const v={intro:viewIntro,g1:viewG1,g2:viewG2,g3:viewG3,g4:viewG4,g5:viewG5}[id]();
+  $("view").innerHTML=`<div class="view">${v}</div><div id="status"></div>`;
+  renderStatus();
+  document.querySelectorAll("textarea").forEach(grow);
+  const t=$("tabs").querySelector('[aria-current="page"]'); if(t) t.scrollIntoView({inline:"nearest",block:"nearest"});
+}
+function grow(t){t.style.height="auto";t.style.height=(t.scrollHeight+3)+"px"}
+
+function plainText(){
+  const L=[]; const v=k=>(data[k]||"").trim()||"—";
+  L.push("МІЙ ТЕПЛИЙ ПЕРЕХІД · Робочий зошит · Модуль 3 · Сесія 2","");
+  L.push("Г1. МОЇ ФРАЗИ ТЕПЛОГО ПЕРЕХОДУ"); STEPS.forEach((s,i)=>L.push(`${i+1}. ${s[0]}: ${v("g1_"+i)}`)); L.push("");
+  L.push("Г2. ПІСЛЯ РАУНДУ 1",`Потреба, яку я не одразу побачив/ла: ${v("g2_need")}`,`Що спокушало «рятувати»: ${v("g2_rescue")}`,"");
+  const w=WHERE.find(x=>x[0]===data.g3_where);
+  L.push("Г3. ПІСЛЯ РАУНДІВ 2–3",`Фраза, що спрацювала: ${v("g3_best")}`,`Крок, який легко пропустити: ${v("g3_step")}`,`План Б, якщо людина відмовляється: ${v("g3_refuse")}`,`План Б, якщо партнер недоступний: ${v("g3_partner")}`,`Де помилялися найбільше: ${w?w[1]:"—"}`,"");
+  L.push("Г4. МІЙ МАРШРУТ",`РОЗУМІЮ: ${v("g4_d1")}`,`ВЗАЄМОДІЮ: ${v("g4_d2")}`,`ДІЮ: ${v("g4_d3")}`,`МОЖУ: ${v("g4_can")}`,`НЕ МОЖУ / НЕ МОЯ ФУНКЦІЯ: ${v("g4_cannot")}`,`ПЕРЕСКЕРОВУЮ / ЗАЛУЧАЮ: ${v("g4_involve")}`,"");
+  L.push("Г5. МОЯ КАРТА КОНТАКТІВ");
+  CONTACTS.forEach(([k,t])=>{const st=data["g5_"+k+"_st"];const name=k==="oth"?((data.g5_oth_label||"").trim()||"Інше"):t;L.push(`${name}: ${v("g5_"+k)}${st?` (${st==="yes"?"домовленість є":"треба домовитися"})`:""}`)});
+  L.push(`Мій перший крок: до ${v("g5_date")} я домовлюся з ${v("g5_who")} про ${v("g5_what")}`);
+  return L.join("\n");
+}
+function msg(t){const m=$("exMsg"); if(m) m.textContent=t}
+
+document.addEventListener("input",e=>{
+  const k=e.target.dataset&&e.target.dataset.k; if(!k) return;
+  data[k]=e.target.value; if(e.target.tagName==="TEXTAREA") grow(e.target); save();
+});
+document.addEventListener("click",async e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  if(b.dataset.go){go(b.dataset.go);return}
+  if(b.dataset.where){data.g3_where = data.g3_where===b.dataset.where ? "" : b.dataset.where;
+    document.querySelectorAll("[data-where]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.where===data.g3_where)); save(); return}
+  if(b.dataset.st){const k="g5_"+b.dataset.st+"_st"; data[k]= data[k]===b.dataset.v ? "" : b.dataset.v;
+    b.parentElement.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",data[k]===x.dataset.v)); save(); return}
+  const a=b.dataset.act;
+  if(a==="copy"){
+    const txt=plainText();
+    try{await navigator.clipboard.writeText(txt);msg("Скопійовано. Вставте відповіді в нотатки або повідомлення собі.")}
+    catch(err){
+      const ex=b.closest(".export"); let t=ex.querySelector("textarea.copyall");
+      if(!t){t=document.createElement("textarea");t.className="copyall";t.readOnly=true;t.setAttribute("aria-label","Усі відповіді");ex.appendChild(t)}
+      t.value=txt; t.focus(); t.select(); msg("Не вдалося скопіювати автоматично. Текст виділено нижче — скопіюйте його вручну.");
+    }
+  }
+  if(a==="file"&&downloads){
+    try{await downloads.save({filename:"miy-teplyi-perekhid.txt",data:new Blob([plainText()],{type:"text/plain;charset=utf-8"})});msg("Файл збережено.")}
+    catch(err){msg(err&&err.code==="declined"?"Збереження скасовано.":"Не вдалося зберегти файл. Скопіюйте відповіді кнопкою вище.")}
+  }
+  if(a==="clear"){confirmClear=true;render()}
+  if(a==="clear-no"){confirmClear=false;render()}
+  if(a==="clear-yes"){data={};confirmClear=false;try{localStorage.removeItem(KEY)}catch(err){};render()}
+});
+window.addEventListener("hashchange",()=>{confirmClear=false;render()});
+render();
+(async()=>{try{downloads=window.claude&&window.claude.use?await window.claude.use("downloads"):null}catch(e){downloads=null} if(downloads) render()})();
+</script>
+
+</body></html>
